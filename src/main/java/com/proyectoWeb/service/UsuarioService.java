@@ -29,6 +29,6 @@ public interface UsuarioService {
     // el idUsuario existe en la tabla
     public void delete(Usuario usuario);
     
-//    public Usuario login(String username, String password);
+
     
 }

@@ -21,8 +21,7 @@ public class Usuario {
     @Column(name = "id_usuario")
     // En objetos hay mayusculas y en las bases de datos minusculas.
     private Long idUsuario;
-    // private Long idCategoria; No se usa por el @ManyToOne
-    private String correo;
+    private String username;
     private String contrasena;
     private String nombre;
     private String ciudad;

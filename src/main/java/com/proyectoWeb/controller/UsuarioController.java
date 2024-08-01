@@ -57,25 +57,5 @@ public class UsuarioController {
     public String index(Model model){ 
         return "index";
     }
-    
-//    // Logica para poder obtener el usuario actual
-//    @PostMapping("/listado")
-//    public String login(@RequestParam String username, 
-//                        @RequestParam String password, 
-//                        HttpSession session) {
-//        Usuario usuario = usuarioService.login(username, password);
-//        if (usuario != null) {
-//            session.setAttribute("usuarioActual", usuario);
-//            return "redirect:/usuario/perfil";
-//        } else {
-//            return "redirect:/login?error";
-//        }
-//    }
-//
-//    @GetMapping("/perfil")
-//    public String perfil(Model model, HttpSession session) {
-//        Usuario usuarioActual = (Usuario) session.getAttribute("usuarioActual");
-//        model.addAttribute("usuario", usuarioActual);
-//        return "perfil";
-//    }
+
 }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!-- Se definen las libreria de acceso extendido de html-->
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
       xmlns:th="http://www.thymeleaf.org">
     <head th:fragment="head">
         <title>Cero Desperdicios 2024</title>
@@ -60,7 +61,7 @@
                                     <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
                                 </form>
                                 <li class="nav-item px-2"><a class="nav-link d-flex align-items-center" th:href="@{/conozcanos/listado}"><i class="fa-solid fa-location-dot me-2"></i>[[#{plantilla.conozcanos}]]</a></li>
-                                <li class="nav-item px-2"><a class="nav-link d-flex align-items-center" th:href="@{/usuario/inicioSesion}"><i class="fa-regular fa-user me-2"></i>[[#{plantilla.MiCuenta}]]</a></li>
+                                <li class="nav-item px-2"><a class="nav-link d-flex align-items-center" th:href="@{/login}"><i class="fa-regular fa-user me-2"></i>[[#{plantilla.MiCuenta}]]</a></li>
 
                                 <li class="nav-item px-2"><a class="nav-link d-flex align-items-center" th:href="@{/oferta/listado}"><i class="fa-solid fa-cart-shopping me-2"></i>[[#{plantilla.carrito}]]</a></li>
 

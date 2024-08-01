@@ -1,6 +1,6 @@
 <!doctype html>
 <html data-bs-theme="auto" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"> 
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"> 
     <head th:replace="~{layout/plantilla :: head}">
         <title>Cero Desperdicios</title>
     </head>
@@ -10,9 +10,9 @@
 
         <div class="container-fluid my-5">
             <div class="row align-items-center">
-                
+
                 <div class="col-1"></div><!-- ESTO ES UN ESPACIO ENTRE COLUMNAS -->
-                
+
                 <div class="col-2"> <!-- Aqui ira la imagen de registrarse -->
                     <div class="row justify-content-center">
                         <img src="https://thumbs.dreamstime.com/z/man-stands-near-smartphone-screen-login-page-user-profile-access-to-account-concept-269672397.jpg?ct=jpeg" 
@@ -20,11 +20,11 @@
                     </div>
                 </div>
                 <div class="col-1"></div><!-- ESTO ES UN ESPACIO ENTRE COLUMNAS -->
-                
+
                 <div class="col-3 ">
                     <h2 class="text-center">Inicio Sesión</h2>
 
-                    <form method="POST" th:action="@{/usuario/listado}">
+                    <form method="POST" th:action="@{/login}">
                         <div class="form-group row  my-3 ">
                             <label class="my-3 text-center" for="username">Usuario:</label>   
                             <input class="form-control rounded-pill " placeholder="Usuario..." type="text" name="username" id="username"/>
@@ -36,11 +36,15 @@
                         </div>
 
                         <div class="form-group text-center">
-                            <a class="btn btn-primary w-100 py-2" th:href="@{/usuario/listado}">Iniciar sesión</a> <!-- Esto es un login quemado -->
+                            <button type="submit" class="btn btn-success rounded-pill my-4">Iniciar sesión</button>
+                        </div>
+
+                        <div class="text-center" th:if="${param.error}">
+                            <p>Usuario o contraseña incorrectos.</p>
                         </div>
                     </form>
                 </div>
-                
+
                 <div class="col-1"></div><!-- ESTO ES UN ESPACIO ENTRE COLUMNAS -->
 
                 <div class="col-3 "><!-- Aqui ira el boton de registrarse -->
@@ -53,7 +57,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-1"></div><!-- ESTO ES UN ESPACIO ENTRE COLUMNAS -->
             </div>   
         </div> 

@@ -47,16 +47,5 @@ public class UsuarioServiceImpl
         usuarioDao.delete(usuario);
     }
 
-//    public Usuario login(String username, String password) {
-//        // Busca al usuario por su nombre de usuario
-//        Usuario usuario = usuarioDao.findByUsername(username);
-//        
-//        if (usuario != null && usuario.getContrasena().equals(password)) {
-//            // La autenticación fue exitosa
-//            return usuario;
-//        }
-//        
-//        // La autenticación falló
-//        return null;
-//    }
+
 }

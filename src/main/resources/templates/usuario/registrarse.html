@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{layout/plantilla :: head}">
         <title>Cero Desperdiciose</title>
         <meta charset="UTF-8"/>
@@ -11,8 +13,8 @@
             <form th:action="@{/usuario/guardar}" method="POST" class="was-validated" enctype="multipart/form-data" ><!--Queda pendiente ajustar el th:action y el object -->
 
                 <div class="mb-3">
-                    <label for="correo">[[#{usuario.correo}]]</label>
-                    <input type="text" class="form-control" name="correo" required="true"/>
+                    <label for="username">[[#{usuario.username}]]</label>
+                    <input type="text" class="form-control" name="username" required="true"/>
                 </div>
                 <div class="mb-3">
                     <label for="contrasena">[[#{usuario.contrasena}]]</label>
