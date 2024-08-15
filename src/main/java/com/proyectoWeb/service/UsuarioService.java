@@ -29,6 +29,10 @@ public interface UsuarioService {
     // el idUsuario existe en la tabla
     public void delete(Usuario usuario);
     
-
+    // Nuevo método para encontrar un usuario por su nombre de usuario
+    Usuario findByUsername(String username);
+    
+     // Se obtiene un Usuario, a partir del username y el password de un usuario
+    public Usuario getUsuarioPorUsernameYContrasena(String username, String contrasena);
     
 }

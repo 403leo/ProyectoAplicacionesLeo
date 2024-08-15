@@ -17,7 +17,6 @@ public class UsuarioServiceImpl
     @Autowired
     private UsuarioDao usuarioDao;
 
-    
     @Transactional(readOnly = true)
     @Override
     public List<Usuario> getUsuarios() {
@@ -46,6 +45,17 @@ public class UsuarioServiceImpl
     public void delete(Usuario usuario) {
         usuarioDao.delete(usuario);
     }
-
+    
+    // Implementación del nuevo método para encontrar un usuario por su nombre de usuario
+    @Override
+    public Usuario findByUsername(String username) {
+        return usuarioDao.findByUsername(username);
+    }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public Usuario getUsuarioPorUsernameYContrasena(String username, String contrasena) {
+        return usuarioDao.findByUsernameAndContrasena(username, contrasena);
+    }
 
 }

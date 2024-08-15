@@ -7,4 +7,6 @@ public interface UsuarioDao
         extends JpaRepository<Usuario, Long> {
     public Usuario findByUsername(String username);
     
+    public Usuario findByUsernameAndContrasena(String username, String Contrasena);
+
 }

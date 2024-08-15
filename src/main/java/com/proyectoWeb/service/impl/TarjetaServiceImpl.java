@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.proyectoWeb.dao.TarjetaDao;
+import com.proyectoWeb.domain.Usuario;
 import com.proyectoWeb.service.TarjetaService;
 
 @Service
@@ -17,7 +18,6 @@ public class TarjetaServiceImpl
     @Autowired
     private TarjetaDao tarjetaDao;
 
-    
     @Transactional(readOnly = true)
     @Override
     public List<Tarjeta> getTarjetas() {
@@ -46,6 +46,10 @@ public class TarjetaServiceImpl
     public void delete(Tarjeta tarjeta) {
         tarjetaDao.delete(tarjeta);
     }
-
+    
+    @Override
+    public List<Tarjeta> findByUsuario(Usuario usuario) {
+        return tarjetaDao.findByUsuario(usuario);
+    }
 
 }

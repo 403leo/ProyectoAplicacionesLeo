@@ -34,6 +34,7 @@
                                             <td>[[${productos.descripcion}]]</td>
                                             <td style="text-align: end" >[[${productos.precio}]]</td>
                                             <td>[[${productos.categoria.descripcion}]]</td>
+
                                             <td><figure><img th:src="${productos.rutaImagen}" height="100" alt="alt"/></figure></td></tr>
                                     </tbody>
                                 </table>
@@ -148,6 +149,15 @@
                                                             <p class="card-text">
                                                                 <strong>[[#{producto.precio}]]:</strong> [[${producto.precio}]]<br>
                                                             </p>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <form>
+                                                                <input type="hidden" name="texto" th:value="${producto.idProducto}"/>
+                                                                <button class="btn btn-ligth" id="addCar" 
+                                                                        
+                                                                        name="addCar" onclick="addCart(this.form)" 
+                                                                        type="button"><i class="fas fa-cart-plus"></i></button>
+                                                            </form>
                                                         </div>
                                                 </div>
                                             </div>

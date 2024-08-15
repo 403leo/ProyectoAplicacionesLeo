@@ -26,9 +26,10 @@ public class Usuario {
     private String nombre;
     private String ciudad;
     private String pais;
+    private String rutaImagen;
 
-//    // Logica para represetar lo de muchos a uno
-//    @OneToMany
-//    @JoinColumn(name = "id_tarjeta", updatable = false)
-//    private List<Tarjeta> tarjetas;
+    // Logica para represetar lo de muchos a uno
+    @OneToMany
+    @JoinColumn(name = "id_tarjeta", updatable = false)
+    private List<Tarjeta> tarjetas;
 }

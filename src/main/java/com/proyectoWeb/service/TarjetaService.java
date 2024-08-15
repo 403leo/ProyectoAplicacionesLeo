@@ -4,6 +4,7 @@
 package com.proyectoWeb.service;
 
 import com.proyectoWeb.domain.Tarjeta;
+import com.proyectoWeb.domain.Usuario;
 import java.util.List;
 
 public interface TarjetaService {
@@ -29,5 +30,7 @@ public interface TarjetaService {
     // el idTarjeta existe en la tabla
     public void delete(Tarjeta tarjeta);
     
+    
+    List<Tarjeta> findByUsuario(Usuario usuario);
     
 }
