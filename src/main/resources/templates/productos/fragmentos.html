@@ -28,14 +28,14 @@
                                             <th></th></tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="productos, contador : ${productos}" th:if="${productos.categoria.idCategoria==1}">   
+                                        <tr th:each="producto, contador : ${productos}" th:if="${producto.categoria.idCategoria==1}">   
 
-                                            <td>[[${productos.idProducto}]]</td>
-                                            <td>[[${productos.descripcion}]]</td>
-                                            <td style="text-align: end" >[[${productos.precio}]]</td>
-                                            <td>[[${productos.categoria.descripcion}]]</td>
+                                            <td>[[${producto.idProducto}]]</td>
+                                            <td>[[${producto.descripcion}]]</td>
+                                            <td style="text-align: end" >[[${producto.precio}]]</td>
+                                            <td>[[${producto.categoria.descripcion}]]</td>
 
-                                            <td><figure><img th:src="${productos.rutaImagen}" height="100" alt="alt"/></figure></td></tr>
+                                            <td><figure><img th:src="${producto.rutaImagen}" height="100" alt="alt"/></figure></td></tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -69,13 +69,13 @@
                                             <th></th></tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="productos, contador : ${productos}" th:if="${productos.categoria.idCategoria==2}">   
+                                        <tr th:each="producto, contador : ${productos}" th:if="${producto.categoria.idCategoria==2}">   
 
-                                            <td>[[${productos.idProducto}]]</td>
-                                            <td>[[${productos.descripcion}]]</td>
-                                            <td style="text-align: end" >[[${productos.precio}]]</td>
-                                            <td>[[${productos.categoria.descripcion}]]</td>
-                                            <td><figure><img th:src="${productos.rutaImagen}" height="100" alt="alt"/></figure></td>
+                                            <td>[[${producto.idProducto}]]</td>
+                                            <td>[[${producto.descripcion}]]</td>
+                                            <td style="text-align: end" >[[${producto.precio}]]</td>
+                                            <td>[[${producto.categoria.descripcion}]]</td>
+                                            <td><figure><img th:src="${producto.rutaImagen}" height="100" alt="alt"/></figure></td>
                                     </tbody>
                                 </table>
                             </div>
@@ -109,13 +109,13 @@
                                             <th></th></tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="productos, contador : ${productos}" th:if="${productos.categoria.idCategoria==3}">   
+                                        <tr th:each="producto, contador : ${productos}" th:if="${producto.categoria.idCategoria==3}">   
 
-                                            <td>[[${productos.idProducto}]]</td>
-                                            <td>[[${productos.descripcion}]]</td>
-                                            <td style="text-align: end" >[[${productos.precio}]]</td>
-                                            <td>[[${productos.categoria.descripcion}]]</td>
-                                            <td><figure><img th:src="${productos.rutaImagen}" height="100" alt="alt"/></figure></td>
+                                            <td>[[${producto.idProducto}]]</td>
+                                            <td>[[${producto.descripcion}]]</td>
+                                            <td style="text-align: end" >[[${producto.precio}]]</td>
+                                            <td>[[${producto.categoria.descripcion}]]</td>
+                                            <td><figure><img th:src="${producto.rutaImagen}" height="100" alt="alt"/></figure></td>
                                     </tbody>
                                 </table>
                             </div>
@@ -150,14 +150,13 @@
                                                                 <strong>[[#{producto.precio}]]:</strong> [[${producto.precio}]]<br>
                                                             </p>
                                                         </div>
-                                                        <div class="card-body">
-                                                            <form>
-                                                                <input type="hidden" name="texto" th:value="${producto.idProducto}"/>
-                                                                <button class="btn btn-ligth" id="addCar" 
-                                                                        
-                                                                        name="addCar" onclick="addCart(this.form)" 
-                                                                        type="button"><i class="fas fa-cart-plus"></i></button>
+                                                        <div>
+                                                            <form th:action="@{/carrito/agregar/{idProducto}(idProducto=${producto.idProducto})}" method="post">
+                                                                <input type="hidden" name="idProducto" th:value="${producto.idProducto}"/>
+                                                                <input type="hidden" name="existencias" th:value="${producto.existencias}"/>
+                                                                <button class="btn btn-light" type="submit"><i class="fas fa-cart-plus"></i></button>
                                                             </form>
+
                                                         </div>
                                                 </div>
                                             </div>

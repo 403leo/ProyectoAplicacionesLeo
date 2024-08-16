@@ -21,6 +21,7 @@ public class Producto {
     private String descripcion;
     private String detalle;
     private double precio;
+    private int existencias;
     private String rutaImagen;
     
     @ManyToOne

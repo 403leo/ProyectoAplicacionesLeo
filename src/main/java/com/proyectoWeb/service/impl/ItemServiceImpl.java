@@ -21,6 +21,10 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public List<Item> gets() {
         List<Item> listaItems = (List) session.getAttribute("listaItems");
+//        if (listaItems == null) {
+//            listaItems = new ArrayList<>();
+//            session.setAttribute("listaItems", listaItems);
+//        }
         return listaItems;
     }
 
@@ -67,9 +71,9 @@ public class ItemServiceImpl implements ItemService {
         for (Item i : listaItems) {
             if (i.getIdProducto() == item.getIdProducto()) {
                 existe = true;
-//                if (i.getCantidad() < i.getExistencias()) {
-//                    i.setCantidad(i.getCantidad() + 1);
-//                }
+                if (i.getCantidad() < i.getExistencias()) {
+                    i.setCantidad(i.getCantidad() + 1);
+                }
                 break;
             }
         }
@@ -140,16 +144,16 @@ public class ItemServiceImpl implements ItemService {
             double total = 0;
             for (Item i : listaItems) {
                 Producto producto = productoDao.getReferenceById(i.getIdProducto());
-//                if (producto.getExistencias() >= i.getCantidad()) {
+                if (producto.getExistencias() >= i.getCantidad()) {
                     Venta venta = new Venta(factura.getIdFactura(),
                             i.getIdProducto(),
                             i.getPrecio(),
                             i.getCantidad());
                     ventaDao.save(venta);
-//                    producto.setExistencias(producto.getExistencias() - i.getCantidad());
+                    producto.setExistencias(producto.getExistencias() - i.getCantidad());
                     productoDao.save(producto);
                     total += i.getCantidad() * i.getPrecio();
-//                }
+                }
             }
 
             //Se debe registrar el total de la venta en la factura
@@ -172,4 +176,5 @@ public class ItemServiceImpl implements ItemService {
         }
         return total;
     }
+
 }

@@ -30,5 +30,10 @@ public class ProductoServiceImpl implements ProductoService{
         return productoDao.findById(producto.getIdProducto()).orElse(null);
     }
     
+//    @Override
+//    public Producto getProductoById(Long idProducto) {
+//        return productoDao.findById(idProducto).orElse(null);
+//    }
+//    
     
 }
