@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head th:replace="~{layout/plantilla :: head}">
         <title>Cero Desperdicios</title>
         <meta charset="UTF-8"/>
@@ -24,18 +24,21 @@
                         </ul>
                         <form action="" method="post" class="mt-3">
                             <div class="form-group">
-                                <label for="nombre">Nombre:</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre"></input>
+                                <label for="nombre">Correo electrónico:</label>
+                                <h6 class="usuario-username">[[${usuario.username}]]</h6>
                             </div>
                             <div class="form-group">
-                                <label for="correo">Correo electrónico:</label>
-                                <input type="email" class="form-control" id="correo" name="correo" placeholder="Ingrese su correo electrónico">
+                                <label for="correo">Nombre:</label>
+                                <h6 class="usuario-nombre">[[${usuario.nombre}]]</h6>
                             </div>
                             <div class="form-group">
-                                <label for="pais">País:</label>
-                                <input type="text" class="form-control" id="pais" name="pais" placeholder="Ingrese su país">
+                                <label for="pais">Ciudad:</label>
+                                 <h6 class="usuario-ciudad">[[${usuario.ciudad}]]</h6>
                             </div>
-                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <div class="form-group">
+                                <label for="correo">País:</label>
+                                <h6 class="usuario-pais">[[${usuario.pais}]]</h6>
+                            </div>
                         </form>
                         <form method="post" th:action='@{/logout}'> 
                             <button type="submit" class="btn btn-danger mt-3">Cerrar Sesión</button>

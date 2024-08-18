@@ -6,7 +6,7 @@
         <title>TechShop</title>
     </head>
     <body>
-        
+
         <div th:fragment="verCarrito" th:unless="${#lists.isEmpty(listaItems)}">            
             <form action="/carrito/listado">
                 <button
@@ -21,16 +21,17 @@
         <section th:fragment="listadoCarrito" id="items">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>[[#{carrito.titulo}]]</h4>
+                                <h4 class="text-center">Carrito</h4>
                             </div>
                             <div th:if="${items != null and !items.empty}">
-                                <table class="table table-stryped">
-                                    <thead class="thead-dark">
+                                <table class="table">
+                                    <thead>
                                         <tr>
                                             <th>#</th>
+                                            <th>[[#{producto.rutaImagen}]]</th>
                                             <th>[[#{producto.descripcion}]]</th>
                                             <th>[[#{producto.precio}]]</th>
                                             <th>[[#{carrito.cantidad}]]</th>
@@ -40,58 +41,27 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="item, contador : ${items}">
+                                        <tr th:each="item,contador : ${items}">
                                             <td>[[${contador.count}]]</td>
+                                            <td>
+                                                <img th:src="${item.rutaImagen}" height="70" alt="alt"/>
+                                            </td>
                                             <td>[[${item.descripcion}]]</td>
-                                            <td class="text-end">[[${item.precio}]]</td>
-                                            <td class="text-center">[[${item.cantidad}]]</td>
-                                            <td class="text-center">[[${item.cantidad*item.precio}]]</td>
-                                            <td>
-                                                <a th:href="@{/carrito/eliminar/}+${item.idProducto}"
-                                                   class="btn btn-danger">
-                                                    <i class='fas fa-trash'></i> [[#{accion.eliminar}]]
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a th:href="@{/carrito/modificar/}+${item.idProducto}"
-                                                   class="btn btn-success">
-                                                    <i class='fas fa-pencil'></i> [[#{accion.actualizar}]]
-                                                </a>
-                                            </td>
+                                            <td>[[${item.precio}]]</td>
+                                            <td>[[${item.cantidad}]]</td>
+                                            <td>[[${item.cantidad * item.precio}]]</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="text-center p-2" th:if="${items== null or items.empty}">
+                            <div class="text-center p-2" th:if="${items == null or items.empty}">
                                 [[#{carrito.no_mostrar}]]
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card text-center bg-primary text-white mb-3">
-                            <div class="card-body">
-                                <h3>[[#{carrito.totalCompra}]]</h3>
-                                <h4 class="fs-4">
-                                    [[${carritoTotal}]]
-                                </h4>
+                            <div class="text-end p-3">
+                                <h4>Total sin envío: [[${carritoTotal}]]</h4>
+                                <a th:href="@{/facturar/carrito}" class="btn btn-success">Realizar pedido</a>
                             </div>
                         </div>
-                        <div class="card text-center bg-success text-white mb-3">
-                            <div class="card-body">
-                                <a th:href="@{/}"
-                                   class="btn btn-success">
-                                    <i class='fas fa-reply'></i> [[#{carrito.seguirComprando}]]
-                                </a>
-                            </div>
-                        </div>
-                        <div class="card text-center bg-info text-white mb-3">
-                            <div class="card-body">
-                                <a th:href="@{/facturar/carrito}"
-                                   class="btn btn-info">
-                                    <i class='fas fa-fordward'></i> [[#{carrito.facturar}]]
-                                </a>
-                            </div>
-                        </div> 
                     </div>
                 </div>
             </div>

@@ -6,65 +6,24 @@
     <head th:replace="~{layout/plantilla :: head}">
         <title>Cero Desperdicios 2020</title>
         <meta charset="UTF-8"/>
-        <style>
-            .card-form-container {
-                max-width: 400px;
-                margin: 0 auto;
-                padding: 20px;
-                border: 1px solid #ccc;
-                border-radius: 10px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                background-color: #fff;
-                text-align: center;
-            }
 
-            .card-form-container label {
-                display: block;
-                text-align: left;
-                margin-bottom: 5px;
-                font-weight: bold;
-            }
-
-            .card-form-container input {
-                width: 100%;
-                padding: 10px;
-                margin-bottom: 15px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-            }
-
-            .card-form-container button {
-                width: 100%;
-                padding: 10px;
-                background-color: green;
-                color: #fff;
-                border: none;
-                border-radius: 5px;
-                font-size: 16px;
-                cursor: pointer;
-            }
-
-            .card-form-container button:hover {
-                background-color: darkgreen;
-            }
-
-            .card-form-container .valid-cards {
-                margin-top: 20px;
-                text-align: center;
-            }
-
-            .card-form-container .valid-cards img {
-                width: 50px;
-                margin: 0 10px;
-            }
-        </style>
     </head>
     <body>
         <!-- Formulario y listado de tarjetas -->
         <section th:fragment="agregarYListarTarjetas" id="tarjetas">
             <div class="container">
                 <div class="row">
-
+                    <div class="row py-2 justify-content-center">
+                        <div class="col-md-3">
+                            <section>
+                                <div class="col-md-4 d-grid">
+                                    <a th:href="@{/login}" class="btn btn-primary">
+                                        <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
+                                    </a>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
                     <!-- Formulario para agregar tarjeta -->
                     <div class="card-form-container">
                         <h2 style="color: #004d00;" class="row justify-content-center">Ingrese una Tarjeta de crédito o débito</h2>
