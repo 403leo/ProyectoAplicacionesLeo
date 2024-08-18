@@ -6,7 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.proyectoWeb.dao.UsuarioDao;
+import com.proyectoWeb.service.CorreoService;
 import com.proyectoWeb.service.UsuarioService;
+import jakarta.mail.MessagingException;
+import java.util.Locale;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.MessageSource;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class UsuarioServiceImpl
@@ -16,6 +24,16 @@ public class UsuarioServiceImpl
     // y solo uno va a existir
     @Autowired
     private UsuarioDao usuarioDao;
+    
+    @Autowired
+    private CorreoService correoService;
+    @Autowired
+    private UsuarioService usuarioService;
+    @Autowired
+    private MessageSource messageSource;  //creado en semana 4...
+    @Autowired
+    private FireBaseStorageServiceImpl firebaseStorageService;
+
 
     @Transactional(readOnly = true)
     @Override
@@ -33,6 +51,24 @@ public class UsuarioServiceImpl
         return usuarioDao.findById(usuario.getIdUsuario()).orElse(null);
 
     }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public Usuario getUsuarioPorUsername(String username) {
+        return usuarioDao.findByUsername(username);
+    }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public Usuario getUsuarioPorUsernameYContrasena(String username, String contrasena) {
+        return usuarioDao.findByUsernameAndContrasena(username, contrasena);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public boolean existeUsuarioPorUsername(String username) {
+        return usuarioDao.existsByUsername(username);
+    }
 
     @Override
     @Transactional
@@ -45,17 +81,6 @@ public class UsuarioServiceImpl
     public void delete(Usuario usuario) {
         usuarioDao.delete(usuario);
     }
-    
-    // Implementación del nuevo método para encontrar un usuario por su nombre de usuario
-    @Override
-    public Usuario findByUsername(String username) {
-        return usuarioDao.findByUsername(username);
-    }
-    
-    @Override
-    @Transactional(readOnly = true)
-    public Usuario getUsuarioPorUsernameYContrasena(String username, String contrasena) {
-        return usuarioDao.findByUsernameAndContrasena(username, contrasena);
-    }
+
 
 }

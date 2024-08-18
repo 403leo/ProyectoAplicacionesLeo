@@ -148,6 +148,7 @@
                                                             <h6 class="card-title">[[${producto.descripcion}]]</h6>
                                                             <p class="card-text">
                                                                 <strong>[[#{producto.precio}]]:</strong> [[${producto.precio}]]<br>
+                                                                <strong>[[#{producto.existencias}]]:</strong> [[${producto.existencias}]]<br>
                                                             </p>
                                                         </div>
                                                         <div>
@@ -186,7 +187,16 @@
                                                             <h6 class="card-title">[[${producto.descripcion}]]</h6>
                                                             <p class="card-text">
                                                                 <strong>[[#{producto.precio}]]:</strong> [[${producto.precio}]]<br>
+                                                                <strong>[[#{producto.existencias}]]:</strong> [[${producto.existencias}]]<br>
                                                             </p>
+                                                        </div>
+                                                         <div>
+                                                            <form th:action="@{/carrito/agregar/{idProducto}(idProducto=${producto.idProducto})}" method="post">
+                                                                <input type="hidden" name="idProducto" th:value="${producto.idProducto}"/>
+                                                                <input type="hidden" name="existencias" th:value="${producto.existencias}"/>
+                                                                <button class="btn btn-light" type="submit"><i class="fas fa-cart-plus"></i></button>
+                                                            </form>
+
                                                         </div>
                                                 </div>
                                             </div>

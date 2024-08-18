@@ -5,6 +5,7 @@ import com.proyectoWeb.domain.Usuario;
 import com.proyectoWeb.service.FireBaseStorageService;
 import com.proyectoWeb.service.TarjetaService;
 import com.proyectoWeb.service.UsuarioService;
+import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,7 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
-    
+
     @Autowired
     private TarjetaService tarjetaService;
 
@@ -40,40 +41,21 @@ public class UsuarioController {
         model.addAttribute("totalUsuarios", usuarios.size());
 
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        
-        // Obtén el usuario por su nombre de usuario
-        Usuario usuario = usuarioService.findByUsername(username);
-        
-        // Obtén las tarjetas asociadas al usuario
-        List<Tarjeta> tarjetas = tarjetaService.findByUsuario(usuario);
+        Usuario usuario = usuarioService.getUsuarioPorUsername(username);
 
+        // Verifica que 'usuario' no sea null antes de añadirlo al modelo
+        if (usuario != null) {
+            model.addAttribute("usuario", usuario);
+        }
+
+        List<Tarjeta> tarjetas = tarjetaService.findByUsuario(usuario);
         model.addAttribute("tarjetas", tarjetas);
         return "usuario/listado";
     }
-    
-//    @GetMapping("/usuario/perfil")
-//    public String perfilUsuario(Authentication authentication, Model model) {
-//        // Obtén el nombre de usuario del usuario autenticado
-//        String username = authentication.getName();
-//
-//        // Obtén el usuario por su nombre de usuario
-//        Usuario usuario = usuarioService.findByUsername(username);
-//
-//        // Obtén las tarjetas asociadas al usuario
-//        List<Tarjeta> tarjetas = tarjetaService.findByUsuario(usuario);
-//
-//        // Agrega los datos al modelo
-//        model.addAttribute("usuario", usuario);
-//        model.addAttribute("tarjetas", tarjetas);
-//
-//        return "usuario/perfil";
-//    }
 
     @PostMapping("/guardar")
-    public String guardar(Usuario usuario,
+    public String usuarioGuardar(Usuario usuario,
             @RequestParam("imagenFile") MultipartFile imagenFile) {
-        var codigo = new BCryptPasswordEncoder();
-        usuario.setContrasena(codigo.encode(usuario.getContrasena()));
         if (!imagenFile.isEmpty()) {
             usuarioService.save(usuario);
             usuario.setRutaImagen(
@@ -82,9 +64,8 @@ public class UsuarioController {
                             "usuario",
                             usuario.getIdUsuario()));
         }
-
         usuarioService.save(usuario);
-        return "redirect:/usuario/registrarse";
+        return "redirect:/usuario/listado";
     }
 
     @GetMapping("/inicioSesion")
@@ -108,13 +89,17 @@ public class UsuarioController {
         return "index";
     }
 
-    @GetMapping("/modificar/{idUsuario}")
-    public String usuarioModificar( Model model) {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        
-        // Obtén el usuario por su nombre de usuario
-        Usuario usuario = usuarioService.findByUsername(username);
-        model.addAttribute("usuario", usuario);
-        return "/usuario/modificar";
+    @GetMapping("/eliminar/{idUsuario}")
+    public String usuarioEliminar(Usuario usuario) {
+        usuarioService.delete(usuario);
+        return "redirect:/usuario/listado";
     }
+
+    @GetMapping("/modificar/{idUsuario}")
+    public String usuarioModificar(Usuario usuario, Model model) {
+        usuario = usuarioService.getusuario(usuario);
+        model.addAttribute("usuario", usuario);
+        return "/usuario/modifica";
+    }
+
 }

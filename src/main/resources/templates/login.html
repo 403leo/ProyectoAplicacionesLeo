@@ -37,6 +37,7 @@
 
                         <div class="form-group text-center">
                             <button type="submit" class="btn btn-success rounded-pill my-4">Iniciar sesión</button>
+                            <a th:href="@{/registro/recordar}" class="btn btn-success my-3 rounded-pill">Recordar</a>
                         </div>
 
                         <div class="text-center" th:if="${param.error}">
@@ -52,7 +53,7 @@
                         <div class="card-body ">                          
                             <div class="text-center">
                                 <h2>¿No tienes una cuenta registrada? Registrate gratis para poder relizar pedidos cuando quieras.</h2> 
-                                <a th:href="@{/usuario/registrarse}" class="btn btn-success my-3 rounded-pill">Registrarse</a>
+                                <a th:href="@{/registro/nuevo}" class="btn btn-success my-3 rounded-pill">Registrarse</a>
                             </div>     
                         </div>
                     </div>

@@ -9,4 +9,7 @@ public interface UsuarioDao
     
     public Usuario findByUsernameAndContrasena(String username, String Contrasena);
 
+
+    public boolean existsByUsername(String username);
+    
 }

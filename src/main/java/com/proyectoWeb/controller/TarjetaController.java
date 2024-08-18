@@ -48,7 +48,7 @@ public class TarjetaController {
     public String guardar(Tarjeta tarjeta) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        Usuario usuario = usuarioService.findByUsername(username);
+        Usuario usuario = usuarioService.getUsuarioPorUsername(username);
 
         // Asignar el usuario autenticado a la tarjeta
         tarjeta.setUsuario(usuario);
