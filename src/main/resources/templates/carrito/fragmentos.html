@@ -24,7 +24,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="text-center">Carrito</h4>
+                                <h4 class="text-center">[[#{plantilla.carrito}]]</h4>
                             </div>
                             <div th:if="${items != null and !items.empty}">
                                 <table class="table">
@@ -58,8 +58,8 @@
                                 [[#{carrito.no_mostrar}]]
                             </div>
                             <div class="text-end p-3">
-                                <h4>Total sin envío: [[${carritoTotal}]]</h4>
-                                <a th:href="@{/facturar/carrito}" class="btn btn-success">Realizar pedido</a>
+                                <h4>[[#{carrito.totalSinEnvio}]]: [[${carritoTotal}]]</h4>
+                                <a th:href="@{/facturar/carrito}" class="btn btn-success">[[#{carrito.realizarPedido}]]</a>
                             </div>
                         </div>
                     </div>

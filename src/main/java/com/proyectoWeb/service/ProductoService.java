@@ -10,6 +10,6 @@ public interface ProductoService {
     
     public Producto getProducto(Producto producto);
     
-    //Producto getProductoById(Long idProducto);
+    public List<Producto> buscarPorDescripcion(String descripcion);
 
 }

@@ -5,6 +5,7 @@ import com.proyectoWeb.domain.Producto;
 import com.proyectoWeb.service.CategoriaService;
 import com.proyectoWeb.service.ProductoService;
 import com.proyectoWeb.service.FireBaseStorageService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -70,6 +71,41 @@ public class ProductoController {
     
     @Autowired
     private FireBaseStorageService firebaseStorageService;
+    
+    @GetMapping("/donacion")
+    public String donacion() {
+
+        return "/productos/donacion";
+    }
+    
+    @GetMapping("/buscar")
+    public String buscar(@RequestParam("query") String query, Model model) {
+        // Normalizamos la búsqueda a minúsculas para evitar problemas de mayúsculas/minúsculas
+        String normalizedQuery = query.toLowerCase();
+
+        // Lógica para redirigir a la categoría específica si el nombre coincide con alguna categoría
+        if (normalizedQuery.equals("enlatados")) {
+            return "redirect:/productos/Enlatados";
+        } else if (normalizedQuery.equals("leguminosas")) {
+            return "redirect:/productos/Leguminosas";
+        } else if (normalizedQuery.equals("panaderia")) {
+            return "redirect:/productos/Panaderia";
+        } else if (normalizedQuery.equals("donacion")) {
+            return "redirect:/productos/donacion";
+        }
+
+        // Buscar productos que coincidan con la descripción
+        List<Producto> productos = productoService.buscarPorDescripcion(normalizedQuery);
+
+        if (!productos.isEmpty()) {
+            // Si hay productos, obtenemos la primera categoría de la lista
+            String categoria = productos.get(0).getCategoria().getDescripcion();
+            return "redirect:/productos/" + categoria;
+        }
+
+        // Si no se encuentra nada, redirigir a un listado vacío o mostrar un mensaje
+        return "redirect:/productos/listado";
+    }
 }
 
 

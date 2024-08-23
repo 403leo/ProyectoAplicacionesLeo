@@ -5,11 +5,11 @@
 package com.proyectoWeb.dao;
 
 import com.proyectoWeb.domain.Producto;
-import java.util.Optional;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
 public interface ProductoDao extends JpaRepository<Producto,Long>{
 
-    
+    List<Producto> findByDescripcionContainingIgnoreCase(String descripcion);
 }

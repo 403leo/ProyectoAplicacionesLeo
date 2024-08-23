@@ -7,7 +7,7 @@
     </head>
     <body>
         <header th:replace="~{layout/plantilla :: header}"/>
-        <h1>Catálogo productos</h1>
+        <h1>[[#{producto.titulo}]]</h1>
         <section th:replace="~{productos/fragmentos :: listadoEnlatados}"/>
     </body>
 </html>

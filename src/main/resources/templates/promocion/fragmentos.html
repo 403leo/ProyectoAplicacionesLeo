@@ -4,7 +4,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head th:replace="~{layout/plantilla :: head}">
     <title>Promociones</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 </head>
 <body>
     <!-- Sección principal para mostrar la información de la entidad promocion -->
@@ -12,15 +12,15 @@
         <div class="container">
             <div class="row mb-4">
                 <div class="col-md-12 text-center">
-                    <h2>PROMOCIONES</h2>
+                    <h2>[[#{promocion.titulo}]]</h2>
                 </div>
             </div>
             <div class="row mb-4">
                 <div class="col-md-6 text-left">
-                    <h3>Productos en descuento</h3>
+                    <h3>[[#{promocion.tituloIzquierda}]]</h3>
                 </div>
                 <div class="col-md-6 text-right">
-                    <h4>LO MÁS RECIENTE</h4>
+                    <h4>[[#{promocion.tituloDerecha}]]</h4>
                 </div>
             </div>
             <div class="row">

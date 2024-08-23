@@ -19,25 +19,41 @@
 
         <header th:fragment="header" class="header">
             <nav class="navbar navbar-expand-sm bg-success p-2">
-            <div class="container">
-                <div class="row w-100">
-                    <div class="col-md-6 d-flex align-items-center">
-                        <a class="nav-link " href="https://wa.me/50672269255" target="_blank">
-                            <i class="fab fa-whatsapp me-2 fa-lg"></i>
-                            <span>Contáctanos +506 0000-0000</span>
-                        </a>
-                    </div>
-                    <div class="col-md-6 d-flex justify-content-end align-items-center">
-                        <a class="nav-link" href="https://www.instagram.com/accounts/login/" target="_blank">
-                            <i class="fab fa-instagram fa-lg"></i>
-                        </a>
-                        <a class="nav-link ms-3" href="https://www.facebook.com/?locale=es_LA" target="_blank">
-                            <i class="fab fa-facebook fa-lg"></i>
-                        </a>
+                <div class="container">
+                    <div class="row w-100">
+                        <div class="col-md-6 d-flex align-items-center">
+                            <a class="nav-link " href="https://wa.me/50672269255" target="_blank">
+                                <i class="fab fa-whatsapp me-2 fa-lg"></i>
+                                <span>[[#{contactanos.contactanos}]]</span>
+                            </a>
+                        </div>
+                        <div class="col-md-6 d-flex justify-content-end align-items-center">
+                            <a class="nav-link" href="https://www.instagram.com/accounts/login/" target="_blank">
+                                <i class="fab fa-instagram fa-lg"></i>
+                            </a>
+                            <a class="nav-link ms-3" href="https://www.facebook.com/?locale=es_LA" target="_blank">
+                                <i class="fab fa-facebook fa-lg"></i>
+                            </a>
+                            <ul class="navbar-nav" sec:authorize="isAuthenticated()">
+                                <li class="nav-item px-2 text-white">
+                                    <img th:src="@{${session.usuarioImagen}}" 
+                                         width="30px"
+                                         height="30px" 
+                                         class="rounded-circle"
+                                         alt="alt"/>
+                                    
+                                </li>
+                            </ul>
+
+
+                        </div>
+
+
+
+
                     </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
 
             <section id="main-header" class="py-3">
                 <nav class="navbar navbar-expand-sm navbar-white bg-green p-0">
@@ -57,9 +73,10 @@
                                 <li class="nav-item px-2"><a class="nav-link d-flex align-items-center" th:href="@{/productos/listado}"><i class="fa-solid fa-burger me-2"></i>[[#{plantilla.productos}]]</a></li>
                                 <li class="nav-item px-2"><a class="nav-link d-flex align-items-center" th:href="@{/promocion/listado}"><i class="fa-solid fa-tag me-2"></i>[[#{plantilla.promociones}]]</a></li>
 
-                                <form class="d-flex ms-auto">
-                                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                                <form class="d-flex ms-auto" th:action="@{/productos/buscar}" method="get">
+                                    <input class="form-control me-2" type="search" name="query" placeholder="Buscar" aria-label="Buscar">
                                 </form>
+
                                 <li class="nav-item px-2"><a class="nav-link d-flex align-items-center" th:href="@{/conozcanos/listado}"><i class="fa-solid fa-location-dot me-2"></i>[[#{plantilla.conozcanos}]]</a></li>
                                 <li class="nav-item px-2"><a class="nav-link d-flex align-items-center" th:href="@{/login}"><i class="fa-regular fa-user me-2"></i>[[#{plantilla.MiCuenta}]]</a></li>
 
@@ -75,8 +92,11 @@
                                     </ul>
                                 </li>
                             </ul>
-                            
-                            
+
+
+
+
+
                         </div> 
                     </div>
                 </nav>
@@ -92,6 +112,6 @@
                 </div>    
             </div>
         </footer>
-        
+
     </body>
 </html>
